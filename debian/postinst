@@ -4,9 +4,7 @@ set -euo pipefail
 systemctl daemon-reload
 systemctl enable log2ram.service log2ram-daily.timer
 
-
-rm -f /etc/cron.daily/log2ram
-rm -f /etc/cron.hourly/log2ram
+rm -f /etc/cron.daily/log2ram /etc/cron.hourly/log2ram
 
 if [ "$1" == "configure" ]; then
 	echo "#####         Reboot to activate log2ram         #####"
