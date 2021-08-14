@@ -1,0 +1,7 @@
+#! /usr/bin/dh-exec
+log2ram.logrotate => /etc/logrotate.d/log2ram
+log2ram.service lib/systemd/system
+log2ram-daily.service lib/systemd/system
+log2ram-daily.timer lib/systemd/system
+log2ram usr/bin
+log2ram.conf etc
