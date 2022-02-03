@@ -20,13 +20,15 @@ _____
 
 ## Install
 ### With APT (recommended)
-    echo "deb [signed-by=/usr/share/keyrings/azlux-archive-keyring.gpg] http://packages.azlux.fr/debian/ bullseye main" | sudo tee /etc/apt/sources.list.d/azlux.list
-    sudo wget -O /usr/share/keyrings/azlux-archive-keyring.gpg  https://azlux.fr/repo.gpg
-    sudo apt update
-    sudo apt install log2ram
+    curl https://github.com/twojstaryzdomu/log2ram/releases 2>/dev/null \
+    | grep -Pom1 '(?<=")[^"]*.deb' \
+    | xargs -ri wget https://github.com/{}
+    sudo apt install ./log2ram*.deb
+
+This debian package is produced independently by Github Actions from the github repo.
 
 ### Manually
-    curl -L https://github.com/azlux/log2ram/archive/master.tar.gz | tar zxf -
+    curl -L https://github.com/twojstaryzdomu/log2ram/archive/master.tar.gz | tar zxf -
     cd log2ram-master
     chmod +x install.sh && sudo ./install.sh
     cd ..
