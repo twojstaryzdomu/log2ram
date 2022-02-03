@@ -50,3 +50,4 @@ jobs:
           echo "${n}=${v}"
         done | tee -a $GITHUB_ENV
         cat debian/changelog
+        git log '--format=tformat:%ad^%h^%aN^%aE^%f^%-aD^%D' --date=format:%Y%m%d --reverse
