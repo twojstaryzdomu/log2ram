@@ -1,0 +1,51 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: log2ram
+Upstream-Contact: github@azlux.fr
+Source: https://github.com/azlux/log2ram
+Comment:
+ ramlog like for systemd (Put log into a ram folder)
+ .
+ Useful for RaspberryPi for not writing on the SD card all the time.
+ You need it because your SD card doesn't want to suffer anymore!
+ .
+ Explanations: The script creates a /var/log mount point in RAM. So any writing
+ of the log to the /var/log folder will not actually be written to disk (in
+ this case to the SD card for a Raspberry Pi) but directly to RAM. By default,
+ every day, the CRON will launch a synchronization of the RAM to the folder
+ located on the physical disk. The script will also make this copy of RAM to
+ disk in case of machine shutdown (but cannot do it in case of power failure).
+ This way you avoid excessive writing on the SD card.
+ .
+ The script log2ram can work on every linux system. So you can use it with your
+own daemon manager if you don't have systemd.
+ .
+ Log2Ram is based on transient log for Systemd here : A transient /var/log
+
+Files: *
+Copyright:
+  2016-2021, azlux, <github@azlux.fr>
+  2016-2017, Nick Daly, <Nick.M.Daly@gmail.com>
+  2016, Sailing74, <Sailing74@users.noreply.github.com>
+  2017, Erwan Velu, <erwan@redhat.com>
+  2017, Henri de Jong, <henridejong@gmail.com>
+  2017, Lukas Pirl, <github@lukas-pirl.de>
+  2017, MegaV0lt, <MegaV0lt@users.noreply.github.com>
+  2017, Nathan Huizinga, <nathan.huizinga@gmail.com>
+  2017, zador-blood-stained, <zador-blood-stained@users.noreply.github.com>
+  2018, nacho, <nacho.nunez@aoifes.com>
+  2018, Thomas McWork, <thomas.mc.work@gmail.com>
+  2019, David MICHEL, <dmichel@adista.fr>
+  2019, StuartIanNaylor, <stuartiannaylor@outlook.com>
+  2019, Tamas Pal, <folti@balabit.com>
+  2019, Zak Kemble, <zakkemble@gmail.com>
+  2020, Casper, <casperklein@users.noreply.github.com>
+  2020, MegaV0lt, <MegaV0lt@users.noreply.github.com>
+  2020, organic-ip, <65312228+organic-ip@users.noreply.github.com>
+  2020, Samuel FORESTIER, <HorlogeSkynet@users.noreply.github.com>
+  2021, Christopher Nethercott, <ccnethercott@gmail.com>
+  2021, Rasmus Bondesson, <raekmannen@gmail.com>
+  2021, rgm, <rgm3@@users.noreply.github.com>
+  2021, Stefan Muthers, <smu@x201.local>
+  2021, twojstaryzdomu, <twojstaryzdomu@users.noreply.github.com>
+License: Expat
+
