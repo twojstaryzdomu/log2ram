@@ -8,6 +8,7 @@ jobs:
     - name: Show changelog
       run: |
         set -x
+        PACKAGE="${GITHUB_REPOSITORY##*/}"
         sudo apt-get install -y devscripts
         [ -d debian ] || mkdir debian
         [ ! -f debian/changelog ] || rm debian/changelog
