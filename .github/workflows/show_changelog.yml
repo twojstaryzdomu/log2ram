@@ -7,6 +7,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Show changelog
       run: |
+        set -x
         sudo apt-get update
         sudo apt-get install -y --no-install-suggests build-essential debhelper devscripts dh-exec ${BUILD_DEPENDS}
         [ -d debian ] || mkdir debian
