@@ -14,6 +14,7 @@ jobs:
         create_changelog: true
         install_build_depends: false
         debug: true
+        release_name: ''
     - id: action-gh-release
       uses: softprops/action-gh-release@v1
       env:
