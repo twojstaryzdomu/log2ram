@@ -1,10 +1,11 @@
+Source: log2ram
+Maintainer: Azlux <github@azlux.fr>
+Bugs: https://github.com/azlux/log2ram/issues
+
 Package: log2ram
-Version: VERSION-TO-REPLACE
 Section: net
 Priority: optional
 Architecture: all
-Maintainer: Azlux <github@azlux.fr>
 Description: ramlog like for systemd (Put log into a ram folder)
 Homepage: https://github.com/azlux/log2ram
-Bugs: https://github.com/azlux/log2ram/issues
 Recommends: rsync
