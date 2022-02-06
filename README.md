@@ -20,14 +20,13 @@ _____
 
 ## Install
 ### With APT (recommended)
-    echo "deb http://packages.azlux.fr/debian/ buster main" | sudo tee /etc/apt/sources.list.d/azlux.list
-    wget -qO - https://azlux.fr/repo.gpg.key | sudo apt-key add -
-    apt update
-    apt install log2ram
+    echo "deb [signed-by=/usr/share/keyrings/azlux-archive-keyring.gpg] http://packages.azlux.fr/debian/ bullseye main" | sudo tee /etc/apt/sources.list.d/azlux.list
+    sudo wget -O /usr/share/keyrings/azlux-archive-keyring.gpg  https://azlux.fr/repo.gpg
+    sudo apt update
+    sudo apt install log2ram
 
 ### Manually
-    curl -Lo log2ram.tar.gz https://github.com/azlux/log2ram/archive/master.tar.gz
-    tar xf log2ram.tar.gz
+    curl -L https://github.com/azlux/log2ram/archive/master.tar.gz | tar zxf -
     cd log2ram-master
     chmod +x install.sh && sudo ./install.sh
     cd ..
@@ -67,19 +66,21 @@ You need to stop log2ram (`service log2ram stop`) and start the [install](#insta
 
 ## Customize
 #### variables :
-In the file `/etc/log2ram.conf`, there are three variables:
+In the file `/etc/log2ram.conf`, there are five variables:
 
 - `SIZE`: defines the size the log folder will reserve into the RAM (default is 40M).
-- `MAIL`: Disables the error system mail if there is not enough place on RAM (if set to `false`)
-- `PATH_DISK`: activate log2ram for other path than default one. Paths should be separated with a `;`
-- `ZL2R`: Enable zram compatibility (`false` by default). Check the comment on the config file. See https://github.com/StuartIanNaylor/zram-swap-config to configure a zram space on your raspberry before enable this option.
+- `USE_RSYNC`: (commented out by default = `true`) use `cp` instead of `rsync` (if set to `false`).
+- `MAIL`: disables the error system mail if there is not enough place on RAM (if set to `false`).
+- `PATH_DISK`: activate log2ram for other path than default one. Paths should be separated with a `;`.
+- `ZL2R`: enable zram compatibility (`false` by default). Check the comment on the config file. See https://github.com/StuartIanNaylor/zram-swap-config to configure a zram space on your raspberry before enable this option.
 
 #### refresh time:
 By default Log2Ram writes to disk every day. If you think this is too much, you can run `systemctl edit log2ram-daily.timer` and add:
 
 ```ini
 [Timer]
-OnCalendar=weekly
+OnCalendar=
+OnCalendar=Mon *-*-* 23:55:00
 ```
 ... or even disable it with `systemctl disable log2ram-daily.timer`, if you prefer writing logs only at stop/reboot.
 
@@ -118,7 +119,7 @@ SystemMaxUse=20M
 This should be set to a value smaller than the size of the RAM volume, for example half. Then apply the new setting:
 
 ```
-sudo restart systemd-journal
+sudo systemctl restart systemd-journald
 ```
 
 This should shrink the size of "archived" logs to be below the limit. Reboot and check that Log2Ram succeds:
@@ -133,7 +134,7 @@ systemctl status log2ram
 (Because sometime we need it)
 ### With APT
 ```
-apt remove log2ram
+sudo apt remove log2ram
 ```
 You can use `--purge` to remove config files as well.
 
