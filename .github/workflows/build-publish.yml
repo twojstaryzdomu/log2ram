@@ -1,16 +1,20 @@
 name: Build & publish
-on: [push, pull_request, workflow_dispatch]
+on: {push: {branches: [master]}, pull_request: {branches: [master]}, workflow_dispatch}
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: '0'
     - id: debianise
       uses: twojstaryzdomu/debianise@HEAD
       with:
         create_changelog: true
         install_build_depends: false
         debug: true
+        release_name: ''
     - id: action-gh-release
       uses: softprops/action-gh-release@v1
       env:
