@@ -4,3 +4,6 @@
 
 override_dh_auto_build:
 	sed -i 's/local\///g' log2ram*
+
+override_dh_installsystemd:
+	dh_installsystemd --no-start

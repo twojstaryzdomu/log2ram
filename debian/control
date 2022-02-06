@@ -1,15 +1,11 @@
 Source: log2ram
 Maintainer: Azlux <github@azlux.fr>
 Bugs: https://github.com/azlux/log2ram/issues
-Build-Depends: debhelper (>= 11), dh-exec
-Standards-Version: 4.1.3
-Homepage: https://github.com/azlux/log2ram
-Vcs-Git: git://github.com/azlux/log2ram
-Vcs-Browser: https://github.com/azlux/log2ram
 
 Package: log2ram
 Section: net
 Priority: optional
 Architecture: all
 Description: ramlog like for systemd (Put log into a ram folder)
+Homepage: https://github.com/azlux/log2ram
 Recommends: rsync
