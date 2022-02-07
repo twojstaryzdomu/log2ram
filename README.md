@@ -27,6 +27,16 @@ _____
 
 This debian package is produced independently by Github Actions from the github repo.
 
+### Self-build the deb package from github sources
+    sudo apt-get update
+    sudo apt-get install -y build-essential debhelper dh-exec devscripts
+    curl -L https://github.com/twojstaryzdomu/log2ram/archive/master.tar.gz | tar zxf -
+    cd log2ram-master
+    dch --create --package log2ram -v 0.0 'My log2ram build'
+    dch -r ''
+    dpkg-buildpackage -b -rfakeroot -us -uc
+    sudo apt install ../log2ram*.deb
+
 ### Manually
     curl -L https://github.com/twojstaryzdomu/log2ram/archive/master.tar.gz | tar zxf -
     cd log2ram-master
